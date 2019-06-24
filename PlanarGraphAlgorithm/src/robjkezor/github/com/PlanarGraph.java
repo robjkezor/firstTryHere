@@ -22,7 +22,6 @@ public class PlanarGraph {
             frame.setSize(1280,720);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
-            //frame.setIconImage(new ImageIcon(getClass().getResource("/src/imagesPackage/vertex3.png")).getImage());
         });
     }
 }
@@ -157,7 +156,6 @@ class DrawFrame extends JFrame
                 MainComp.curveList.clear();
                 MainComp.notPlanarEdges.clear();
                 MainComp.mainGraph = new graph(18,10);
-                //MainComp.mainGraph = new graph(13,6);
                 MainComp.firstTry();
             }
         };
@@ -234,28 +232,6 @@ class DrawFrame extends JFrame
                 System.out.println();
                 System.out.print("Время работы алгоритма( в миллисекундах): ");
                 System.out.println(finishTime - startTime);
-                //MainComp.circleEdges = drawingCircle;
-                /*for(int i = 0; i< MainComp.mainGraph.edgesMass.length; i++)
-                {
-                    /*for(int j = 0; j< drawingCircle.length; j++)
-                    {
-                        if((MainComp.mainGraph.edgesMass[i].Ke == drawingCircle[j].Ke&&
-                                MainComp.mainGraph.edgesMass[i].Ne == drawingCircle[j].Ne)||
-                                (MainComp.mainGraph.edgesMass[i].Ke == drawingCircle[j].Ne&&
-                                        MainComp.mainGraph.edgesMass[i].Ne == drawingCircle[j].Ke))
-                        {
-                            MainComp.g2.setPaint(Color.GREEN);
-                            MainComp.curveList.get(i).setCurve(MainComp.curveList.get(i));
-                            repaint();
-                        }
-                    }
-                }*/
-                /*for(int i = 0;i<MainComp.curveList.size();i++)
-                {
-                    MainComp.curveList.get(i).ctrlx = MainComp.curveList.get(i).x1;
-                    MainComp.curveList.get(i).ctrly = MainComp.curveList.get(i).y1;
-                    repaint();
-                }*/
             }
         };
         Action makeSimpleCircle = new AbstractAction("Отобразить простой цикл") {
@@ -362,16 +338,12 @@ class DrawComponent extends JComponent {
     public ArrayList<edge> notPlanarEdges;
     private boolean isMakingEdge;
     private boolean isDeletingEdge;
-    //public int modeGraph = DrawFrame.getMakingNewGraph();
     Graphics2D g2;
     URL url = getClass().getResource("/imagesPackage/vertex2.png");
     public Image vertexImage = new ImageIcon(url).getImage();
-    //public Image vertexImage = new ImageIcon("C:\\Users\\Mikhail\\IdeaProjects\\GraphPlanarTest\\src\\imagesPackage\\vertex2.png").getImage();
     public graph mainGraph;// = new graph(11,6);
-    //maingraph = new graph(8,5);
     public int[] freePoints= {100,100,400,100,100,400,400,400,250,250,550,250};
     public ArrayList<Integer> freePointsForGraph = new ArrayList<>();
-    //public int[] freePoints= {100,100,400,100,100,400,400,400,250,250,550,250};
     Point2D firstPoint;
     Point2D secondPoint;
     public DrawComponent() {
@@ -421,7 +393,6 @@ class DrawComponent extends JComponent {
             for(int i = 0;i<circleEdges.size();i++) {
                 for (int j = 0; j<curveList.size();j++)
                 {
-                    //System.out.print("second HUI");
                     if(mainGraph.edgesMass[j].Ne == circleEdges.get(i).Ne &&
                             mainGraph.edgesMass[j].Ke == circleEdges.get(i).Ke||
                             mainGraph.edgesMass[j].Ne == circleEdges.get(i).Ke &&
@@ -437,7 +408,6 @@ class DrawComponent extends JComponent {
             for(int i = 0;i<notPlanarEdges.size();i++) {
                 for (int j = 0; j<curveList.size();j++)
                 {
-                    //System.out.print("second HUI");
                     if(mainGraph.edgesMass[j].Ne == notPlanarEdges.get(i).Ne &&
                             mainGraph.edgesMass[j].Ke == notPlanarEdges.get(i).Ke||
                             mainGraph.edgesMass[j].Ne == notPlanarEdges.get(i).Ke &&
@@ -454,12 +424,9 @@ class DrawComponent extends JComponent {
             g2.draw(r);
             g2.setPaint(Color.BLACK);
             g2.fill(r);
-            //g2.drawImage(vertexImage,(int)r.getX(),(int)r.getY(),null);
-            //g2.drawImage(getClass().getResource("/src/imagePackage/vertex3.png"),(int)r.getX()-4,(int)r.getY()-4,null);
+
             g2.drawImage(vertexImage,(int)r.getX()-4,(int)r.getY()-4,null);
             String tmp;
-            //getClass().getResource("/src/imagesPackage/vertex3.png")
-            //g2.drawString("2",(int)r.getCenterX()-6,(int)r.getCenterY()+5);
             for(int i =0; i< mainGraph.edgesMass.length;i++)
             {
                 if((r.getCenterY()== mainGraph.edgesMass[i].NeCoord.y)
@@ -476,10 +443,6 @@ class DrawComponent extends JComponent {
                 }
             }
         }
-        //g2.setPaint(Color.GREEN);
-        //if(curveList.size() != 0) g2.draw(curveList.get(0));
-        //g2.draw(new QuadCurve2D.Float(100, 100, 100,200, 200,200));
-        // g2.drawImage(vertexImage,50,50,null);
     }
     /*
            Отображение сгенерированного графа
@@ -505,8 +468,6 @@ class DrawComponent extends JComponent {
             {
                 mainGraph.edgesMass[i].NeCoord.x = freePointsForGraph.get(count);
                 mainGraph.edgesMass[i].NeCoord.y = freePointsForGraph.get(count+1);
-                //mainGraph.edgesMass[i].NeCoord.x = freePoints[count];
-                //mainGraph.edgesMass[i].NeCoord.y = freePoints[count+1];
                 for(int j=0;j<mainGraph.edgesMass.length;j++)
                 {
                     if(mainGraph.edgesMass[j].Ne == mainGraph.edgesMass[i].Ne)
@@ -532,8 +493,6 @@ class DrawComponent extends JComponent {
             {
                 mainGraph.edgesMass[i].KeCoord.x = freePointsForGraph.get(count);
                 mainGraph.edgesMass[i].KeCoord.y = freePointsForGraph.get(count+1);
-                //mainGraph.edgesMass[i].KeCoord.x = freePoints[count];
-                //mainGraph.edgesMass[i].KeCoord.y = freePoints[count+1];
                 for(int j=0;j<mainGraph.edgesMass.length;j++)
                 {
                     if(mainGraph.edgesMass[j].Ne == mainGraph.edgesMass[i].Ke)
@@ -591,7 +550,6 @@ class DrawComponent extends JComponent {
             {
                 if(p.distance(r.getP1())<r.getP1().distance(r.getP2())&&
                         p.distance(r.getP2())<r.getP1().distance(r.getP2())) {
-                    //System.out.print(" _  " + i + " _ ");
                     return curveList.get(i);
                 }
             }
@@ -635,8 +593,6 @@ class DrawComponent extends JComponent {
         {
             current = find(event.getPoint());
             currentCurve = findLine(event.getPoint());
-            //if(currentLine!=null)
-            //  System.out.print(" hui "+currentLine.ptLineDist(event.getPoint())+" hui ");
 
             if(current == null)
             {
@@ -700,11 +656,9 @@ class DrawComponent extends JComponent {
                         int num = -1;
                         for(int i = 0;i<lines.size();i++)
                         {
-                            //Line2D r = lines.get(i);
                             if((lines.get(i).getP1().equals(firstPoint)==true && lines.get(i).getP2().equals(secondPoint)==true)||
                                     (lines.get(i).getP2().equals(firstPoint)==true && lines.get(i).getP1().equals(secondPoint)==true))
                             {
-                                //System.out.print(" i WAS HERE !!! ");
                                 num = i;
                             }
                         }
@@ -739,13 +693,6 @@ class DrawComponent extends JComponent {
          */
         public void mouseMoved(MouseEvent event)
         {
-            /*if(findLine(event.getPoint())== null) {
-                setCursor(Cursor.getDefaultCursor());
-            }
-            else
-            {
-                setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-            }*/
             if(find(event.getPoint())== null) {
                 setCursor(Cursor.getDefaultCursor());
             }
@@ -824,7 +771,6 @@ class DrawComponent extends JComponent {
             if(current==null&&currentCurve!=null)
             {
                 currentCurve.setCurve(currentCurve.getP1(),event.getPoint(),currentCurve.getP2());
-                //curveList.add(currentCurve.Float);
                 repaint();
             }
         }

@@ -25,7 +25,6 @@ public class gammaAlgorithm {
     {
         resultEdges = new ArrayList<>();
         notPlanarEdges = new ArrayList<>();
-        //circleCount = 0;
         gammaGraph = graph;
         numVertex = numV;
         numEdges = numE;
@@ -77,7 +76,6 @@ public class gammaAlgorithm {
                         vertexForVerge.add(tempVector.get(j).Ke);
                         currPoint = tempVector.get(j).Ke;
                         tempVector.remove(tempVector.get(j));
-                        //System.out.print(" hey ");
                         continue;
                     }
                     if (currPoint == tempVector.get(j).Ke && tempVector.get(j).Ne!=resultEdges.get(0).Ne)
@@ -85,13 +83,11 @@ public class gammaAlgorithm {
                         vertexForVerge.add(tempVector.get(j).Ne);
                         currPoint = tempVector.get(j).Ne;
                         tempVector.remove(tempVector.get(j));
-                        //System.out.print(" hey ");
                         continue;
                     }
 
                 }
             }
-            //System.out.print(temp.Ne+" "+temp.Ke+" || ");
         }
 
         verges = new ArrayList<>();
@@ -278,7 +274,6 @@ public class gammaAlgorithm {
                                     segments.get(i).edges.get(j).Ke == resultEdges.get(k).Ke)
                             {
                                 deletedEdges.add(segments.get(i).edges.get(j));
-                                //segments.get(i).edges.remove(segments.get(i).edges.get(j));
                             }
                         }
 
@@ -297,7 +292,6 @@ public class gammaAlgorithm {
                             {
 
                                 flag = 1;
-                                //segments.get(i).edges.remove(segments.get(i).edges.get(j));
                             }
                         }
                         if(flag == 0)
@@ -376,24 +370,6 @@ public class gammaAlgorithm {
                                             segments.get(i).contactVertexList.remove(segments.get(i).contactVertexList.get(w));//could be bad
                                     }
                                     System.out.println(" WE MADE NEW SEGMENT AS A PAIR OF CONTACT");
-                                    //удаляем все непринадлежащие сегменту вершины
-                                    /*ArrayList<Integer> deletedVertex = new ArrayList<>();
-                                    for (int y = 0;k<segments.get(i).allVertexList.size();y++) {
-                                        int flag =0;
-                                        for (int x = 0;j<segments.get(i).edges.size();x++) {
-                                            if (segments.get(i).edges.get(x).Ne == segments.get(i).allVertexList.get(y) ||
-                                                    segments.get(i).edges.get(x).Ke == segments.get(i).allVertexList.get(y))
-                                            {
-                                                flag = 1;
-                                                //segments.get(i).edges.remove(segments.get(i).edges.get(j));
-                                            }
-                                        }
-                                        if(flag == 0)
-                                        {
-                                            deletedVertex.add(segments.get(i).allVertexList.get(y));
-                                        }
-                                    }
-                                    segments.get(i).allVertexList.removeAll(deletedVertex);*/
                                     break newPoint;
                                 }
 
@@ -500,9 +476,6 @@ public class gammaAlgorithm {
                                 //то есть добавляем из списка контактных 1 неконтактную
                                 ArrayList<Integer> vertexCurrentSegment = new ArrayList<>();
                                 //добавили все контактные
-                                /*for (int k = 1; k < contactVertexCurrentSegment.size(); k++) {
-                                    vertexCurrentSegment.add(contactVertexCurrentSegment.get(k));
-                                }*/
                                 //и добавили единственную не контактную
                                 vertexCurrentSegment.add(nonContactVertex.get(j));
                                 // добавили все контактные
@@ -836,22 +809,6 @@ public class gammaAlgorithm {
 
 
             //переопределяем список контактных вершин каждого сегмента через принадлежность результирующим ребрам
-            /*for(int  i = 0; i < segments.size();i++)
-            {
-                for(int k = 0;k< resultEdges.size();k++)
-                {
-                    if(segments.get(i).allVertexList.contains(resultEdges.get(k).Ne)&&
-                            !segments.get(i).contactVertexList.contains(resultEdges.get(k).Ne))
-                    {
-                        segments.get(i).contactVertexList.add(resultEdges.get(k).Ne);
-                    }
-                    if(segments.get(i).allVertexList.contains(resultEdges.get(k).Ke)&&
-                            !segments.get(i).contactVertexList.contains(resultEdges.get(k).Ke))
-                    {
-                        segments.get(i).contactVertexList.add(resultEdges.get(k).Ke);
-                    }
-                }
-            }*/
             System.out.println(" Lets check contact vertex here!!! ");
             for(int i=0;i<segments.size();i++)
             {
@@ -918,9 +875,7 @@ public class gammaAlgorithm {
             acceptedVergeIndex.clear();
             for (int i = 0; i < segments.size(); i++) {
                 for (int j = 0; j < verges.size(); j++) {
-                    //currContVert = segments.get(i).contactVertexList;
                     currContVert.addAll(segments.get(i).contactVertexList);
-                    //currContVert2 = segments.get(i).contactVertexList;
                     currContVert2.addAll(segments.get(i).contactVertexList);
                     segmentCount = 0;
                     another_flag = 1;
@@ -936,10 +891,6 @@ public class gammaAlgorithm {
                         if (segment_flag2 == 0) {
                             another_flag = 0;
                         }
-                    }
-                    if(currContVert2.contains(currContVert.get(0)))
-                    {
-                        //System.out.println("u piece of shit its acceptable");
                     }
                     if (another_flag == 1) {
                         segments.get(i).acceptedVerge.add(verges.get(j));
@@ -994,25 +945,7 @@ public class gammaAlgorithm {
             //boolean is_last_contact = false;
             //int prev_point;
             ArrayList<Integer> averagePoint = new ArrayList<>();
-            /*for (int i = 0; i < segments.get(0).edges.size(); i++) {
-                for (int j = 0; j < segments.get(0).contactVertexList.size(); j++) {
-                    if (segments.get(0).edges.get(i).Ke == segments.get(0).contactVertexList.get(j)) {
-                        first_contact_point = segments.get(0).edges.get(i).Ke;
-                        break;
-                    }
-                    if (segments.get(0).edges.get(i).Ne == segments.get(0).contactVertexList.get(j)) {
-                        first_contact_point = segments.get(0).edges.get(i).Ne;
-                        break;
-                    }
-                }
-            }*/
-            //экспериментальный кусок кода
-            /*if(segments.get(0).contactVertexList.size() == 1&& segments.get(0).edges.size()==1) {
-                resultEdges.add(segments.get(0).edges.get(0));
-                segments.get(0).edges = new ArrayList<>();
-                segments.remove(0);
-                continue;
-            }*/
+
             //новый способ определения альфа цепи
             GraphForSegment theGraph = new GraphForSegment();
             //добавили вершины
@@ -1053,12 +986,7 @@ public class gammaAlgorithm {
             //проходим по списку и ищем вторую контактную вершину
             for(int i = 1;i<path.size();i++)
             {
-                /*if(path.get(i) == segments.get(0).contactVertexList.get(1))
-                {
-                    //нашли позицию второй контактной вершины
-                    lastContact = i;
-                    System.out.println("last contact is: "+lastContact+" and it is: "+ path.get(lastContact)+" ");
-                }*/
+
                 if(segments.get(0).contactVertexList.contains(path.get(i)))
                 {
                     lastContact = i;
@@ -1136,7 +1064,6 @@ public class gammaAlgorithm {
 
     public void doTheNewAlphaChain(int first_contact_point,int last_contact_point, int verge_num, ArrayList<Integer> average,segment currentSegment)
     {
-        //System.out.print("i was here u moron");
         ArrayList<Integer> temp = new ArrayList<>();
         if(average.isEmpty() != true)
         {
@@ -1157,18 +1084,7 @@ public class gammaAlgorithm {
                 if(verges.get(verge_num).contactVertexList.get(i) == first_contact_point) firstCheckedInd = i;
                 if(verges.get(verge_num).contactVertexList.get(i) == last_contact_point) secondCheckedInd = i;
             }
-            /*if(firstCheckedInd > secondCheckedInd)
-            {
-                temp.add(last_contact_point);
-                temp.add(first_contact_point);
-            }
-            if(firstCheckedInd < secondCheckedInd)
-            {
-                temp.add(first_contact_point);
-                temp.add(last_contact_point);
-            }*/
-            //the end of experimental part of code
-            //the end of experimental part of code
+
             int curr_point;
             for(int j = 0;j<segments.get(0).edges.size();j++)
             {
@@ -1277,15 +1193,9 @@ public class gammaAlgorithm {
                 {
                     //если первая контактная вершина находится в грани после последней
                     //контактной вершины, то добавляем в обратном порядке от обычного
-                    /*if(first_contact_point == verges.get(verge_num).contactVertexList.get(lastInd)
-                            && flagForCorrectAdditing == 1)//experimental part of code
-                    {
-                        tempDel.add(verges.get(verge_num).contactVertexList.get(i));
-                    }//the end of experimental part of code
-                    else {*/
+
                     tempDel.add(0, verges.get(verge_num).contactVertexList.get(i));
-                    //}
-                    //tempDel.add(verges.get(verge_num).contactVertexList.get(i));//AGHTUNG
+
                 }
             }
             ArrayList<Integer> newhuynya = new ArrayList<>();
@@ -1299,20 +1209,16 @@ public class gammaAlgorithm {
             for(int i = 1;i<temp.size()-1;i++)
             {
                 //добавляет в оба списка и verge_num и второй
-                //verges.get(verge_num).contactVertexList.add(firstInd+1,temp.get(i));
                 ArrayList<Integer> newarrayhuynya = new ArrayList<>();
                 for(int j = 0; j< verges.get(verge_num).contactVertexList.size();j++)// verges.get(verge_num).contactVertexList;
                 {
                     newarrayhuynya.add(verges.get(verge_num).contactVertexList.get(j));
                 }
                 newarrayhuynya.add(firstInd+1,temp.get(i));
-                //newarrayhuynya.add(firstInd+1,temp.get(i));
-                //if(flagForCorrectAdditing == 0) firstInd++;
                 verges.get(verge_num).contactVertexList = newarrayhuynya;
                 verges.get(verge_num).numberVertex++;
-                firstInd++;//could be rly fucking bad
-                if(firstCheckedInd > secondCheckedInd) firstInd--;//could be rly fucking bad at all
-                //System.out.print("ADDSHIT");
+                firstInd++;//could be rly bad
+                if(firstCheckedInd > secondCheckedInd) firstInd--;//could be rly bad at all
             }
             //в новую грань пиздим все, что между контактными вершинами включая их, т.е.
             ArrayList<Integer> newTemp = new ArrayList<>();
@@ -1337,14 +1243,7 @@ public class gammaAlgorithm {
                     newTemp.add(verges.get(verge_num).contactVertexList.get(i));
                 }
             }
-            //эта хуета не работает
-            //verges.add(new verge(average.size()+2,temp));
-            //а вот эта должна
             verges.add(new verge(average.size()+2,newTemp));
-            /*for(int i = tempDel.size()-1; i >= 0;i--)//could be really bad
-            {
-                verges.get(verges.size()-1).contactVertexList.add(tempDel.get(i));
-            }*/
 
             for(int i = 0; i< tempDel.size();i++)
             {
@@ -1401,39 +1300,15 @@ public class gammaAlgorithm {
                     {
                         flag5 = 1;
                     }
-                    /*if (segments.get(0).allVertexList.get(j) == segments.get(0).edges.get(k).Ne
-                            && !emptyVertexCurSegment1.contains(segments.get(0).allVertexList.get(j)))
-                    {
-                        emptyVertexCurSegment1.add(segments.get(0).allVertexList.get(j));
-                    }
-                    if (segments.get(0).allVertexList.get(j) == segments.get(0).edges.get(k).Ke
-                            && !emptyVertexCurSegment1.contains(segments.get(0).allVertexList.get(j)))
-                    {
-                        emptyVertexCurSegment1.add(segments.get(0).allVertexList.get(j));
-                    }*/
+
                 }
                 if(flag5 == 0)
                 {
                     emptyVertexCurSegment1.add(segments.get(0).allVertexList.get(j));
                 }
             }
-            /*for(int j = 0; j<segments.get(0).allVertexList.size();j++)
-            {
-                for(int w = 0; w< emptyVertexCurSegment1.size();w++)
-                {
-                    if(segments.get(0).allVertexList.get(j) == emptyVertexCurSegment1.get(w))
-                    {
-                        segments.get(0).allVertexList.remove(emptyVertexCurSegment1.get(w));
-                    }
-                }
-            }*/
-            segments.get(0).allVertexList.removeAll(emptyVertexCurSegment1);
-            /*segments.get(0).allVertexList.clear();
-            for (int j = 0 ;j<emptyVertexCurSegment1.size();j++)
-            {
-                segments.get(0).allVertexList.add(emptyVertexCurSegment1.get(j));
-            }*/
 
+            segments.get(0).allVertexList.removeAll(emptyVertexCurSegment1);
         }
         else
         {
@@ -1455,24 +1330,7 @@ public class gammaAlgorithm {
                 temp.add(first_contact_point);
                 temp.add(last_contact_point);
             }
-            //the end of experimental part of code
-            //experimental part of my code
-            /*int firstCheckedInd = -1;
-            int secondCheckedInd = -1;
-            for(int i = 0; i < verges.get(verge_num).contactVertexList.size();i++)
-            {
-                if(verges.get(verge_num).contactVertexList.get(i) == first_contact_point) firstCheckedInd = i;
-                if(verges.get(verge_num).contactVertexList.get(i) == last_contact_point) secondCheckedInd = i;
-            }
-            if(firstCheckedInd > secondCheckedInd)
-            {
-                int tmp = first_contact_point;
-                first_contact_point = last_contact_point;
-                last_contact_point = tmp;
-            }*/
-            //the end of experimental part of code
-            //temp.add(first_contact_point);
-            //temp.add(last_contact_point);
+
             for(int j = 0; j<segments.get(0).edges.size();j++)
             {
                 if(segments.get(0).edges.get(j).Ne == first_contact_point &&
@@ -1498,21 +1356,18 @@ public class gammaAlgorithm {
                 if(verges.get(verge_num).contactVertexList.get(i) == first_contact_point) firstInd = i;
                 if(verges.get(verge_num).contactVertexList.get(i) == last_contact_point) lastInd = i;
             }
-            //int flagForCorrectAdditing = 0;
             if(firstInd>lastInd)
             {
                 int tmp;
                 tmp = firstInd;
                 firstInd = lastInd;
                 lastInd = tmp;
-                //flagForCorrectAdditing = 1;
             }
             for(int i = 0; i< verges.get(verge_num).contactVertexList.size();i++)
             {
                 if(i>firstInd&& i<lastInd)
                 {
                     tempDel.add(verges.get(verge_num).contactVertexList.get(i));
-                    //tempDel.add(0,verges.get(verge_num).contactVertexList.get(i));
                 }
             }
             ArrayList<Integer> newhuynya = new ArrayList<>();
@@ -1526,17 +1381,14 @@ public class gammaAlgorithm {
             for(int i = 1;i<temp.size()-1;i++)
             {
                 //добавляет в оба списка и verge_num и второй
-                //verges.get(verge_num).contactVertexList.add(firstInd+1,temp.get(i));
                 ArrayList<Integer> newarrayhuynya = new ArrayList<>();
                 for(int j = 0; j< verges.get(verge_num).contactVertexList.size();j++)// verges.get(verge_num).contactVertexList;
                 {
                     newarrayhuynya.add(verges.get(verge_num).contactVertexList.get(j));
                 }
                 newarrayhuynya.add(firstInd+1,temp.get(i));
-                //if(flagForCorrectAdditing == 0) firstInd++;
                 verges.get(verge_num).contactVertexList = newarrayhuynya;
                 verges.get(verge_num).numberVertex++;
-                //System.out.print("ADDSHIT");
             }
             //cоздали новую грань
             verges.add(new verge(average.size()+2,temp));
@@ -1545,7 +1397,6 @@ public class gammaAlgorithm {
             for(int i = 0; i< tempDel.size();i++)
             {
                 verges.get(verges.size()-1).contactVertexList.add(newPosition,tempDel.get(i));//could be bad
-                //verges.get(verges.size()-1).contactVertexList.add(tempDel.get(i));
                 newPosition++;
             }
             System.out.println();
@@ -1599,38 +1450,13 @@ public class gammaAlgorithm {
                     {
                         flag5 = 1;
                     }
-                    /*if (segments.get(0).allVertexList.get(j) == segments.get(0).edges.get(k).Ne
-                            && !emptyVertexCurSegment1.contains(segments.get(0).allVertexList.get(j)))
-                    {
-                        emptyVertexCurSegment1.add(segments.get(0).allVertexList.get(j));
-                    }
-                    if (segments.get(0).allVertexList.get(j) == segments.get(0).edges.get(k).Ke
-                            && !emptyVertexCurSegment1.contains(segments.get(0).allVertexList.get(j)))
-                    {
-                        emptyVertexCurSegment1.add(segments.get(0).allVertexList.get(j));
-                    }*/
                 }
                 if(flag5 == 0)
                 {
                     emptyVertexCurSegment1.add(segments.get(0).allVertexList.get(j));
                 }
             }
-            /*for(int j = 0; j<segments.get(0).allVertexList.size();j++)
-            {
-                for(int w = 0; w< emptyVertexCurSegment1.size();w++)
-                {
-                    if(segments.get(0).allVertexList.get(j) == emptyVertexCurSegment1.get(w))
-                    {
-                        segments.get(0).allVertexList.remove(emptyVertexCurSegment1.get(w));
-                    }
-                }
-            }*/
             segments.get(0).allVertexList.removeAll(emptyVertexCurSegment1);
-            /*segments.get(0).allVertexList.clear();
-            for (int j = 0 ;j<emptyVertexCurSegment1.size();j++)
-            {
-                segments.get(0).allVertexList.add(emptyVertexCurSegment1.get(j));
-            }*/
         }
     }
 
@@ -1662,8 +1488,6 @@ public class gammaAlgorithm {
                     {
                         lastPoint = gammaGraph.edgesMass[i].Ke;
                         firstPoint = example[lastPoint-1].myFather;
-                        //firstPoint = gammaGraph.edgesMass[i].Ke;
-                        //firstPoint = gammaGraph.edgesMass[i].Ne;//cbbad
                         flag = 1;
                         break;
                     }
@@ -1721,7 +1545,6 @@ public class gammaAlgorithm {
                 exampleEdges.add(newEdges[exampleEdges.size()]);
                 newcurpos = example[newcurpos-1].myFather;
             }
-            //resultE = newEdges;
             resultE = new edge[exampleEdges.size()];
             for(int i = 0;i< exampleEdges.size();i++)
             {

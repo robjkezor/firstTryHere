@@ -33,18 +33,13 @@ public class graph {
                             (edgesMass[i].KeCoord.x == x1 && edgesMass[i].KeCoord.y == y1)
             )
             {
-                //System.out.print(" deleting "+edgesMass[i].Ne+" "+edgesMass[i].Ke);
             }
             else {
-                //System.out.print(" tmp+ "+edgesMass[i].Ne+" "+edgesMass[i].Ke);
                 tmp[count] = edgesMass[i];
                 count++;
             }
         }
-        //for(int i = 0;i< ;i++)
-        //System.out.print(" _ "+ edgesMass.length+" _ ");
         edgesMass = tmp;
-        //System.out.print(" _ "+ edgesMass.length+" _ ");
         numberEdges--;
         if(numberEdges == 0) numberNodes = 0;
     }
@@ -67,7 +62,6 @@ public class graph {
                     tmp[tmp.length-1].Ne==-1)
             {
                 tmp[tmp.length-1].Ne = edgesMass[i].Ne;
-                //System.out.print("SHIT HAPPENS ONCE");
                 continue;
             }
 
@@ -76,7 +70,6 @@ public class graph {
                     tmp[tmp.length-1].Ke==-1)
             {
                 tmp[tmp.length-1].Ke = edgesMass[i].Ke;
-                //System.out.print("SHIT HAPPENS TWICE ");
                 continue;
             }
         }
@@ -87,7 +80,6 @@ public class graph {
                     tmp[tmp.length-1].Ke==-1)
             {
                 tmp[tmp.length-1].Ke = edgesMass[i].Ne;
-                //System.out.print("SHIT HAPPENS ONCE");
                 continue;
             }
 
@@ -96,7 +88,6 @@ public class graph {
                     tmp[tmp.length-1].Ne==-1)
             {
                 tmp[tmp.length-1].Ne = edgesMass[i].Ke;
-                //System.out.print("SHIT HAPPENS TWICE ");
                 continue;
             }
         }
@@ -109,11 +100,7 @@ public class graph {
             if(edgesMass[i].Ke == -1 )
             {
                 edgesMass[i].Ke = numberNodes+1;
-                /*if(numberNodes!=0)
-                {*/
                 numberNodes++;
-                /*}
-                else numberNodes=2;*/
                 System.out.print(numberNodes+"  ");
                 flag = 1 ;
             }
@@ -122,11 +109,7 @@ public class graph {
                 edgesMass[i].Ne = numberNodes+1;
                 if(flag == 0)
                 {
-                    /*if(numberNodes!=0)
-                    {*/
                     numberNodes++;
-                    /*}else
-                        numberNodes = 2;*/
                     System.out.print(numberNodes+"  ");
                 }
             }
@@ -164,11 +147,6 @@ public class graph {
                 mainCircle.add(s, y);
             }
         }
-        /*for(int i = 0; i < mainCircle.size();i++)
-        {
-            System.out.print(" "+mainCircle.get(i)+" ");
-        }*/
-        // making first n edges!!!
         edgesMass = new edge[numberEdges];
         for(int i = 0;i<edgesMass.length;i++)
         {
@@ -179,8 +157,6 @@ public class graph {
             edgesMass[i].Ne = mainCircle.get(i);
             edgesMass[i].Ke = mainCircle.get(i+1);
         }
-        //edgesMass[numberNodes-1].Ne = mainCircle.get(mainCircle.size()-1);
-        //edgesMass[numberNodes-1].Ke = mainCircle.get(0);
         //теперь нам надо задать все остальные ребра случайно
         int count1,count2;
         int randNumber1 = 0;
@@ -217,10 +193,6 @@ public class graph {
         edgesMass[numberNodes-1].Ne = mainCircle.get(mainCircle.size()-1);
         edgesMass[numberNodes-1].Ke = mainCircle.get(0);
 
-        /*for(int i = 0; i < edgesMass.length;i++)
-        {
-            System.out.print(" "+edgesMass[i].Ne+" "+edgesMass[i].Ke+" ");
-        }*/
 
     }
     public static int rnd(int min, int max)
@@ -292,7 +264,6 @@ class edge
         edge c = (edge) comparing;
 
         return (Integer.compare(Ne,c.Ne) == 0 && Integer.compare(Ke,c.Ke) == 0);
-        //return super.equals(obj);
     }
 
     public int getKe()
